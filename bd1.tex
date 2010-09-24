@@ -1,0 +1,84 @@
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
+% MC436 Engenharia de Software                    %  
+% Projeto : Sistema de gerenciamento              %
+% de conferências técnicas                        %
+% Data:05/08/2010                                 %
+% Unicamp,Campinas,São Paulo,Brasil               % 
+% Grupo:                                          %
+% - Mariana Mendes Caspirro                       % 
+% - Plinio Augusto Soriano Freire                 %
+% - Tiago Chedraoui Silva                         % 
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
+\documentclass[letter]{article}
+
+
+%
+% Required packages
+
+%%% fontes %%%
+%\usepackage[brazilian]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}       % dá suporte para os termos na língua portuguesa do Brasi
+\usepackage[utf8]{inputenc}      % acentuação
+\usepackage{ae,aecompl,aeguill}  % pdfs mais bonitos =)
+
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{colortbl}
+\usepackage{paralist}
+\usepackage{multirow}
+\usepackage{textcomp}
+\usepackage{color}       
+\usepackage{indentfirst} % retira padrao americano de paragrafos
+\usepackage{multicol}   
+\usepackage[linkbordercolor={1 1 1},urlcolor=black,colorlinks=false]{hyperref} % links
+\usepackage{amsmath,amsfonts} %matematicos
+\usepackage{enumerate} %enumaração
+\usepackage{wrapfig}   % blocos figuras
+\usepackage{subfig}
+\usepackage{indentfirst} % Retira padrao americano de paragrafos
+\usepackage{ae,aecompl}
+\usepackage{pslatex}
+\usepackage{verbatim}
+\usepackage{pstricks}
+\usepackage{epsf}
+\usepackage{pstricks-add}
+%\usepackage{fullpage}
+\usepackage[a4paper,left=1.5cm,right=1.5cm,top=1.0cm,bottom=5cm]{geometry}
+
+% Capa estilizada %
+\newcommand*{\titleTMB}{\begingroup \centering \settowidth{\unitlength}{\LARGE MC 536} \vspace*{\baselineskip} {\large\scshape  Turma A}\\[\baselineskip] \rule{11.0cm}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} \rule{11.0cm}{0.4pt}\\[\baselineskip] {\LARGE  Inclusão digital de  }\\[0.2\baselineskip] {\LARGE línguas locais   }\\[0.2\baselineskip] {\itshape MC 536 - Bancos de Dados: Teoria e Prática - Segundo Semestre de 2010}\\[0.2\baselineskip] \rule{11.0cm}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} \rule{11.0cm}{1.6pt}\\[\baselineskip] {\large\scshape Professor: 
+Ricardo da Silva Torres}\par \vfill {\normalsize   \scshape 
+    \begin{center} 
+      \begin{tabular}{  l  l  p{5cm} } 
+        Douglas Alves Germano & RA: 60210\\
+        Henrique de Souza Oliveira & RA: 83632\\
+        Tiago Chedraoui Silva  & RA: 082941\\
+      \end{tabular} \end{center}
+    \itshape \today }\\[\baselineskip] \vspace{3.2pt} \endgroup}
+
+
+\begin{document}
+\titleTMB 
+\newpage
+
+\tableofcontents 
+\listoffigures
+
+\newpage
+\section{MER}
+\begin{figure}[h!]
+\includegraphics[scale=0.9,angle=90]{mer}
+\caption{Diagrama E-R usado para o banco de dados do projeto de inclusão digital de línguas locais}
+\end{figure}
+
+\newpage
+\section{Dicionário de dados}
+
+%\begin{figure}[h]
+%\centerline{\input mer.tex}
+%\caption{Diagrama E-R usado para o banco de dados do projeto de inclusão digital de línguas locais \label{mer}}
+%\end{figure}
+
+\end{document}
