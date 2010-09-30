@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2010.5.28)  24 SEP 2010 11:25
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2010.5.28)  25 SEP 2010 05:59
 entering extended mode
  %&-line parsing enabled.
 **bd1.tex
@@ -1073,7 +1073,25 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 
 [2]
 File: mer.eps Graphic file (type eps)
- <mer.eps> [3] [4] (./bd1.aux) ) 
+ <mer.eps>
+! Interruption.
+\XKV@f@r ...o \else #2\expandafter \XKV@f@r \fi #1
+                                                  {#2}
+l.76 \newpage
+             
+? ^^[[A^^[[Aq
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+H for help, X to quit.
+? ^^[[A
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+H for help, X to quit.
+? q^^[[A
+OK, entering \batchmode...
+ [3] [4] (./bd1.aux) ) 
 Here is how much of TeX's memory you used:
  9372 strings out of 256217
  127303 string characters out of 1917095
