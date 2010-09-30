@@ -4,19 +4,10 @@
 \usepackage{graphicx}
 
 \usepackage{tikz-er2}
-%%%<
 \usepackage{verbatim}
 \usepackage[active,tightpage]{preview}
 \PreviewEnvironment{tikzpicture}
 \setlength\PreviewBorder{5pt}%
-%%%>
-
-\begin{comment}
-:Title: Entity-Relationship diagram
-
-Example of an Entity-Relationship diagram, built using Tikz and the tikz-er2 package (available at `<http://tagus.inesc-id.pt/~pcalado/tikzer2/tikz-er2.html>`_)
-
-\end{comment}
 
 \begin{document}
 
@@ -39,54 +30,120 @@ Example of an Entity-Relationship diagram, built using Tikz and the tikz-er2 pac
 \centering
 \scalebox{.87}{
 \begin{tikzpicture}[node distance=1.5cm, every edge/.style={link}]
-
-  \node[entity] (emp) {Employee};
-  \node[attribute] (ename) [above=of emp] {Name} edge (emp);
-  \node[attribute] (enum) [above right=of emp] {\key{Number}} edge (emp);
-
-  \node[isa] (isa) [below=1cm of emp] {ISA} edge (emp);
-
-  \node[entity] (mec) [below left=1cm of isa] {Mechanic} edge (isa);
-  \node[entity] (sal) [below right=1cm of isa] {Salesman} edge (isa);
-
-  \node[relationship] (does) [left=of mec] {Does} edge (mec);
-
-  \node[weak entity] (rep) [below=of does] {RepairJob} edge (does);
-  \node[attribute] (rnum) [left=of rep] {\discriminator{Number}} edge (rep);
-  \node[attribute] (desc) [above left=of rep] {Description} edge (rep);
-  \node[attribute] (cost) [below left=of rep] {Cost} edge (rep);
-  \node[attribute] (mat) [left=0.5cm of cost] {Parts} edge (cost);
-  \node[attribute] (work) [below left=0.5cm of cost] {Work} edge (cost);
-
-  \node[ident relationship] (reps) [below=of rep] {Repairs} edge [total] (rep);
-
-  \node[entity] (car) [right=of reps] {Car} edge [<-] (reps);
-  \node[attribute] (lic) [above=of car] {\key{License}} edge (car);
-  \node[attribute] (mod) [below=of car] {Model} edge (car);
-  \node[attribute] (year) [below right=of car] {Year} edge (car);
-  \node[attribute] (manu) [below left=1.5cm of car] {Manufacturer} edge (car);
   
-  \node[relationship] (buy) [below=of sal] {Buys};
-  \node[attribute] (pri) [above left=of buy] {Price} edge (buy);
-  \node[attribute] (sdate) [left=of buy] {Date} edge (buy);
-  \node[attribute] (bval) [below left=of buy] {Value} edge (buy);
+  \node[entity] (doc) {Documentos};
 
-  \node[relationship] (sel) [right=of buy] {Sells};
-  \node[attribute] (sdate) [above right=of sel] {Date} edge (sel);
-  \node[derived attribute] (sval) [right=of sel] {Value} edge (sel);
-  \node[attribute] (com) [below right=of sel] {Comission} edge (sel);
+  \node[entity] (usr) [above=9cm of doc ] {Usu\'ario} ;
   
-  \draw[link] (car.10) -| (buy) (buy) edge (sal);
-  \draw[link] (car.-10) -| (sel) (sel) |- (sal);
+%  \node[isa] (isa) [above=1cm of usr] {ISA} edge (usr);
+%  \node[entity] (uni) [above left=2cm of isa] {Universidade} edge (isa);
+%  \node[entity] (org) [above right=2cm of isa] {Organiza\c{c}\~ao} edge (isa);
+%  \node[entity] (emp) [above=of isa] {Empresa} edge (isa);
 
-  \node[entity] (cli) [below right=0.5cm and 3.7cm of car] {Client};
-  \node[attribute] (cid) [right=of cli] {\key{ID}} edge (cli);
-  \node[attribute] (cname) [below left=of cli] {Name} edge (cli);
-  \node[multi attribute] (cphone) [below right=of cli] {Phone} edge (cli);
-  \node[attribute] (cadd) [below=of cli] {Address} edge (cli);
+  \node[entity] (pmu) [below left=5.5cm and 2.7cm of doc] {Programa Mult.};
+  \node[entity] (com) [below left=6.0cm and 5.7cm of usr] {Coment\'ario};
 
-  \draw[link] (cli.70) |- node [pos=0.05, auto, swap] {buyer} (sel);
-  \draw[link] (cli.110) |- node [pos=0.05, auto] {seller} (buy);
+ % \node[relationship] (upl1) [below =4cm of org] {Upload} edge  node [pos=0.05, auto, swap] {(0,n)} (org);
+ % \node[relationship] (upl2) [below=2cm  of emp] {Upload} edge  node [pos=0.05, auto, swap] {(0,n)} (emp);
+ % \node[relationship] (upl3) [below =3cm of uni] {Upload} edge  node [pos=0.05, auto, swap] {(0,n)} (uni);
+  \node[relationship] (upl) [below =3cm of usr] {Upload} edge  node [pos=0.05, auto, swap] {(0,n)} (usr);
+  
+  \node[relationship] (faz) [above=of com] {Fazer} edge  node [pos=0.25, auto, swap] {(0,n)} (com);
+  \node[relationship] (pos) [below left=3cm and 1.7cm of doc] {Possuir};
+  \node[relationship] (res) [below left =2cm and -1.4cm of com] {Resposta};
+  \node[relationship] (int) [above right=3cm and 4.7cm of doc] {Interessar};
+  \node[relationship] (lig) [below right=5cm and 0.1cm  of doc] {Ligado};
+  \node[relationship] (resdoc) [below right =3cm and 2.7cm of doc] {Resposta};
+  \node[relationship] (sup) [below right = and 10cm of pmu] {Suportar};
+  \node[relationship] (pos2) [above left = and 1.5cm of doc] {Possui};
+  
+  
+  
+  \draw[link] (pmu) |- node [pos=0.05, auto, swap] {(1,n)} (pos);
+  \draw[link] (doc) |- node [pos=0.05, auto, swap] {(0,n)} (pos);
+% UPLOAD  
+  \draw[link] (doc.90) -| node [pos=0.55, auto, swap] {(0,n)} (upl);
+%  \draw[link] (doc.90) -| node [pos=0.55, auto, swap] {(0,n)} (upl2);
+%  \draw[link] (doc.35) |- node [pos=0.55, auto, swap] {(0,n)} (upl1);
+%  \draw[link] (doc.35) |- node [pos=0.55, auto, swap] {(0,n)} (upl1);
+ 
+
+ \draw[link] (usr) -| node [pos=0.25, auto, swap] {(0,n)} (faz);
+
+%%% resposta comentario
+  \draw[link] (res.40) |- node [pos=0.25, auto, swap] {(1,1)} (com.-75);
+  \draw[link] (res.140) |- node [pos=0.25, auto, swap] {(0,1)} (com.-150);
+
+%%%interesse usuario documento
+  \draw[link] (int) -| node [pos=0.25, auto, swap] {(0,1)} (doc.25);
+  \draw[link] (int) |- node [pos=0.25, auto, swap] {(0,n)} (usr);
+
+%%% resposta doc
+  \draw[link] (resdoc) -| node [pos=0.25, auto, swap] {(0,n)} (doc.-40);
+  \draw[link] (resdoc.90) -| node [pos=0.25, auto, swap] {(0,n)} (doc.-30);
+
+%%%ligar documento e documento
+  \draw[link] (lig) -| node [pos=0.25, auto, swap] {(0,n)} (doc.-60);
+  \draw[link] (lig.90) -| node [pos=0.25, auto, swap] {(0,n)} (doc.-50);
+
+%%%suportar
+  \draw[link] (pmu) |- node [pos=0.25, auto, swap] {(0,n)} (sup.90);
+  \draw[link] (usr.10) -| node [pos=0.25, auto, swap] {(0,n)} (sup.0);
+
+%%%doc possui comentarios
+  \draw[link] (pos2) -| node [pos=0.10, auto, swap] {(0,n)} (doc.120);
+  \draw[link] (pos2) -| node [pos=0.10, auto, swap] {(0,n)} (com.0);
+
+%-%-%-%-%-%-%-% 
+% Atributos
+%-%-%-%-%-%-%-%
+
+% Doc
+
+  \node[attribute] (dti) [below left=0.5cm of doc] {Data inserido} edge (doc);
+  \node[attribute] (dtc) [left=of doc] {Data criado} edge (doc);
+  \node[attribute] (lo) [below right=1.0cm and 2cm of doc] {L\'{i}ngua utilizador} edge (doc);
+  \node[attribute] (lu) [right=of doc] {L\'{i}ngua oficial} edge (doc);
+  \node[attribute] (tp) [above left=0cm and 4cm of doc] {Tipo} edge (doc);
+  \node[attribute] (id) [above right=1cm and 1cm of doc] {\key{ID}} edge (doc);
+  \node[attribute] (id) [above right=0.2cm and 2.5cm of doc] {Num. acessos} edge (doc);
+  \node[attribute] (id) [above right=-1.9cm and 3cm of doc] {Assunto} edge (doc);
+ 
+%  \node[attribute] (id) [above right=1cm and 1cm of doc] {\key{ID}} edge (doc);
+
+
+% usuario
+ \node[attribute] (dti) [below left=0.5cm and 1 cm of usr] {Nome} edge (usr);
+ \node[attribute] (dti) [below right =0.5cm of usr] {E-mail} edge (usr);
+ \node[attribute] (dti) [above right=1.5cm of usr] {Prefer\^encia} edge (usr);
+ \node[attribute] (dti) [above left=0.9cm of usr] {L\'ingua utilizador} edge (usr);
+ \node[attribute] (tipo) [above =0.9cm of usr] {Tipo} edge (usr);
+
+
+% prog mult
+ \node[attribute] (pmid) [below left=0.5cm and 1 cm of pmu] {\key{ID}} edge (pmu);
+ \node[attribute] (pmdc) [left =0.5cm of pmu] {Descri\c{c}\~ao} edge (pmu);
+ \node[attribute] (pmlp) [above left=1.5cm of pmu] {L\'ingua do projeto} edge (pmu);
+
+
+% upload
+ \node[attribute] (maq) [below left=0.5cm and 1 cm of upl] {M\'aquina} edge (upl);
+ \node[attribute] (uplloc) [right =0.5cm of upl] {Local} edge (upl);
+ \node[attribute] (upldt) [above right=1.5cm of upl] {Data de inser\c{c}\~ao} edge (upl);
+ \node[attribute] (uplltr) [above left=0.5cm of upl] {L\'ingua de transito} edge (upl);
+ 
+%comentario 
+ \node[attribute] (maq) [below left=0.5cm and 1 cm of com] {\key{ID}} edge (com);
+ \node[attribute] (uplloc) [left =0.5cm of com] {Texto} edge (com);
+ \node[attribute] (upldt) [above left=1.5cm of com] {Data} edge (com);
+ %\node[attribute] (uplltr) [above left=0.5cm of com] {Tipo} edge (com);
+
+%universidade 
+% \node[attribute] (maq) [above left=0.5cm and 1 cm of uni] {Website} edge (uni);
+
+% empresa 
+ \node[attribute] (pais) [above left=2.0cm and 0.2 cm of usr] {Pa\'is} edge (usr.100);
+
 
 \end{tikzpicture}
 }
