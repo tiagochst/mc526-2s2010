@@ -62,6 +62,7 @@
 
   \draw[link] (usr.10) -| node [pos=0.90, auto, swap] {(1,n)} (pos4);
   \draw[link] (rdt) |- node [pos=0.90, auto, swap] {(1,n)} (pos4.90);
+  \draw[link] (usr.300) -| node [pos=0.95, auto, swap] {(1,1)} (lig.95);
 
  
  \draw[link] (aut) |- node [pos=0.90, auto, swap] {(0,n)} (pos3);
@@ -130,7 +131,7 @@
 
 % usuario
  \node[attribute] (dti) [below left=0.5cm and 1 cm of usr] {Nome} edge (usr);
- \node[attribute] (dti) [below right =0.5cm of usr] {E-mail} edge (usr);
+ \node[attribute] (dti) [below right =1.3cm of usr] {E-mail} edge (usr);
 % \node[multi attribute] (dti) [above right=1.5cm of usr] {Prefer\^encia} edge (usr);
  \node[multi attribute] (dti) [above left=0.9cm of usr] {L\'ingua utilizador} edge (usr);
  \node[attribute] (tipo) [above =0.9cm of usr] {Tipo} edge (usr);
@@ -152,8 +153,8 @@
  \node[attribute] (maqnav) [below left=-1.0cm and 3 cm of upl] {Navegador} edge (maq);
 
 
- \node[attribute] (uplloc) [right =0.5cm of upl] {Local} edge (upl);
- \node[attribute] (upldt) [above right=1.5cm of upl] {Data de inser\c{c}\~ao} edge (upl);
+ \node[attribute] (uplloc) [right =0.9cm of upl] {Local} edge (upl);
+ \node[attribute] (upldt) [above right=1.0cm and 2cm of upl] {Data de inser\c{c}\~ao} edge (upl);
  \node[attribute] (uplltr) [above left=0.5cm of upl] {L\'ingua de transito} edge (upl);
  
 %comentario 
