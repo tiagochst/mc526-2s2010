@@ -30,25 +30,19 @@
 \centering
 \scalebox{.87}{
 \begin{tikzpicture}[node distance=1.5cm, every edge/.style={link}]
-  
+
+
+%%%Entidades  
   \node[entity] (doc) {Documento};
   \node[entity] (usr) [above=9cm of doc ] {Usu\'ario} ;
   \node[entity] (rdt) [above right =4.4cm and 3.5cm of usr] {Rede de trabalho};
-   
-%  \node[isa] (isa) [above=1cm of usr] {ISA} edge (usr);
-%  \node[entity] (uni) [above left=2cm of isa] {Universidade} edge (isa);
-%  \node[entity] (org) [above right=2cm of isa] {Organiza\c{c}\~ao} edge (isa);
-%  \node[entity] (emp) [above=of isa] {Empresa} edge (isa);
-
   \node[entity] (pmu) [below left=5.5cm and 2.7cm of doc] {Programa Mult.};
   \node[weak entity] (com) [below left=3.0cm and 5.7cm of usr] {Coment\'ario};
   \node[weak entity] (aut) [below left=0.2cm and 8.0cm  of doc] {Autor};
 
- % \node[relationship] (upl1) [below =4cm of org] {Upload} edge  node [pos=0.05, auto, swap] {(0,n)} (org);
- % \node[relationship] (upl2) [below=2cm  of emp] {Upload} edge  node [pos=0.05, auto, swap] {(0,n)} (emp);
- % \node[relationship] (upl3) [below =3cm of uni] {Upload} edge  node [pos=0.05, auto, swap] {(0,n)} (uni);
+
+%%%%Relacoes%%%%%%
   \node[relationship] (upl) [below =3cm of usr] {Upload} edge  node [pos=0.05, auto, swap] {(1,1)} (usr);
-  
   \node[relationship] (faz) [above=of com] {Fazer} edge  node [pos=0.25, auto, swap] {(0,n)} (com);
   \node[relationship] (pos) [below left=3cm and 1.7cm of doc] {Possuir};
   \node[relationship] (res) [below left =2cm and -1.4cm of com] {Resposta};
@@ -60,38 +54,31 @@
   \node[relationship] (pos3) [below left =1.4cm and 3.5cm of doc] {Possui};
   \node[relationship] (pos4) [above right =1.4cm and 3.5cm of usr] {Possui};
 
-  \draw[link] (usr.10) -| node [pos=0.90, auto, swap] {(1,n)} (pos4);
-  \draw[link] (rdt) |- node [pos=0.90, auto, swap] {(1,n)} (pos4.90);
-  \draw[link] (usr.300) -| node [pos=0.95, auto, swap] {(1,1)} (lig.95);
-
  
- \draw[link] (aut) |- node [pos=0.90, auto, swap] {(0,n)} (pos3);
+%%%Ligacoes
+  \draw[link] (usr.10) edge node [pos=0.85, auto, swap] {(1,n)} (pos4);
+  \draw[link] (rdt) |- node [pos=0.90, auto, swap] {(0,1)} (pos4.90);
+  \draw[link] (usr.330) edge node [pos=0.98, auto] {(1,1)} (lig.30);
+  \draw[link] (aut) |- node [pos=0.90, auto,swap] {(0,n)} (pos3);
   \draw[link] (doc.230) |- node [pos=0.90, auto, swap] {(1,n)} (pos3);
-
-  
-  
-  
   \draw[link] (pmu) |- node [pos=0.90, auto, swap] {(0,n)} (pos);
   \draw[link] (doc) |- node [pos=0.90, auto, swap] {(1,n)} (pos);
-% UPLOAD  
+  % UPLOAD  
   \draw[link] (doc.90) -| node [pos=0.95, auto, swap] {(0,n)} (upl);
-%  \draw[link] (doc.90) -| node [pos=0.55, auto, swap] {(0,n)} (upl2);
-%  \draw[link] (doc.35) |- node [pos=0.55, auto, swap] {(0,n)} (upl1);
-%  \draw[link] (doc.35) |- node [pos=0.55, auto, swap] {(0,n)} (upl1);
- 
- \draw[link] (usr) -| node [pos=0.95, auto, swap] {(0,n)} (faz);
-
-%%% resposta comentario
+  
+  \draw[link] (usr) -| node [pos=0.95, auto, swap] {(1,1)} (faz);
+  
+  %%% resposta comentario
   \draw[link] (res.40) |- node [pos=0.25, auto, swap] {(1,1)} (com.-75);
   \draw[link] (res.140) |- node [pos=0.25, auto, swap] {(0,n)} (com.-150);
-
-%%%interesse usuario documento
-  \draw[link] (int) -| node [pos=0.05, auto, swap] {(0,1)} (doc.25);
+  
+  %%% interesse usuario documento
+  \draw[link] (int) -| node [pos=0.05, auto, swap] {(0,n)} (doc.25);
   \draw[link] (int) |- node [pos=0.05, auto, swap] {(0,n)} (usr);
-
+ 
 %%% resposta doc
-  \draw[link] (resdoc) -| node [pos=0.15, auto, swap] {(0,n)} (doc.-40);
-  \draw[link] (resdoc.90) -| node [pos=0.15, auto, swap] {(0,n)} (doc.-30);
+  \draw[link] (resdoc) -| node [pos=0.05, auto, swap] {(0,n)} (doc.-40);
+  \draw[link] (resdoc.90) -| node [pos=0.1, auto, swap] {(0,n)} (doc.-30);
 
 %%%ligar documento e documento
   \draw[link] (lig) -| node [pos=0.05, auto, swap] {(0,n)} (doc.-60);
@@ -109,6 +96,13 @@
 % Atributos
 %-%-%-%-%-%-%-%
 
+%rede de trabalho
+  \node[attribute] (rdtid) [above=0.5cm of rdt] {\key{ID}} edge (rdt);
+  \node[attribute] (rdtid) [above left=0.5cm and 2cm of rdt] {Nome} edge (rdt);
+  \node[attribute] (rdtid) [above right=0.5cm and 1cm of rdt] {E-mail} edge (rdt);
+  \node[attribute] (rdtid) [above left=0.5cm and -0.3cm of rdt] {URL} edge (rdt);
+
+
 % Doc
 
   \node[attribute] (dti) [below left=0.5cm of doc] {Data criado} edge (doc);
@@ -118,62 +112,54 @@
   \node[multi attribute] (tp) [above left=0cm and 4cm of doc] {Tipo} edge (doc);
   \node[attribute] (id) [above right=1cm and 1cm of doc] {\key{ID}} edge (doc);
   \node[attribute] (id) [above right=0.2cm and 2.5cm of doc] {Num. acessos} edge (doc);
-%  \node[attribute] (id) [above right=-1.9cm and 3cm of doc] {Assunto} edge (doc);
   \node[attribute] (dsc) [above left=-1.9cm and 4cm of doc] {Descri\c{c}\~ao} edge (doc);
- \node[attribute] (dsclng) [above left=-1.0cm and 6 cm of doc] {L\'ingua} edge (dsc);
+  \node[attribute] (dsclng) [above left=-1.0cm and 6 cm of doc] {L\'ingua} edge (dsc);
   \node[attribute] (dsc) [above right=2.3cm and 1cm of doc] {Pa\'is} edge (doc);
- \node[attribute] (palchave) [above right=-2.5cm and 7.5cm of doc] {Palavras-chaves} edge (doc);
+  \node[attribute] (palchave) [above right=-2.5cm and 7.5cm of doc] {Palavras-chaves} edge (doc);
   \node[attribute] (palchavelng) [above =1.5cm of palchave] {L\'ingua} edge (palchave);
 
  
-%  \node[attribute] (id) [above right=1cm and 1cm of doc] {\key{ID}} edge (doc);
 
-
-% usuario
- \node[attribute] (dti) [below left=0.5cm and 1 cm of usr] {Nome} edge (usr);
- \node[attribute] (dti) [below right =1.3cm of usr] {E-mail} edge (usr);
-% \node[multi attribute] (dti) [above right=1.5cm of usr] {Prefer\^encia} edge (usr);
- \node[multi attribute] (dti) [above left=0.9cm of usr] {L\'ingua utilizador} edge (usr);
- \node[attribute] (tipo) [above =0.9cm of usr] {Tipo} edge (usr);
- \node[attribute] (tipo) [below left=0.5cm and 3.5 cm of usr] {\key{ID}} edge (usr);
-% \node[attribute] (pais) [above left=2.0cm and 0.2 cm of usr] {Pa\'is} edge (usr.100);
- \node[attribute] (pais) [above right=1.0cm and 0.2 cm of usr] {Pa\'is} edge (usr);
-
-
-% prog mult
- \node[attribute] (pmid) [below left=0.5cm and 1 cm of pmu] {\key{ID}} edge (pmu);
- \node[attribute] (pmdc) [left =0.5cm of pmu] {Descri\c{c}\~ao} edge (pmu);
- \node[attribute] (pmlp) [above left=1.5cm of pmu] {L\'ingua do projeto} edge (pmu);
-
-
-% upload
- \node[attribute] (maq) [below left=0.5cm and 1 cm of upl] {M\'aquina} edge (upl);
- \node[attribute] (maqip) [below left=0.0cm and 4 cm of upl] {IP} edge (maq);
- \node[attribute] (maqso) [below left=1.0cm and 4 cm of upl] {SO} edge (maq);
- \node[attribute] (maqnav) [below left=-1.0cm and 3 cm of upl] {Navegador} edge (maq);
-
-
- \node[attribute] (uplloc) [right =0.9cm of upl] {Local} edge (upl);
- \node[attribute] (upldt) [above right=1.0cm and 2cm of upl] {Data de inser\c{c}\~ao} edge (upl);
- \node[attribute] (uplltr) [above left=0.5cm of upl] {L\'ingua de transito} edge (upl);
- 
-%comentario 
- \node[attribute] (maq) [below left=0.5cm and 1 cm of com] {\key{ID}} edge (com);
- \node[attribute] (uplloc) [left =0.5cm of com] {Texto} edge (com);
- \node[attribute] (upldt) [above left=1.5cm of com] {Data} edge (com);
- %\node[attribute] (uplltr) [above left=0.5cm of com] {Tipo} edge (com);
-
-%universidade 
-% \node[attribute] (maq) [above left=0.5cm and 1 cm of uni] {Website} edge (uni);
-
-% empresa 
-
-%Autor
-% \node[attribute] (aemail) [above left=0.5cm and 0.2 cm of aut] {Email} edge (aut.100);
- \node[attribute] (anome) [above =0.5cm of aut] {Nome} edge (aut.100);
- \node[attribute] (apais) [left=0.5cm  of aut] {Pa\'is} edge (aut);
- \node[attribute] (apais) [below left=0.3cm and 0.5cm  of aut] {\key{ID}} edge (aut);
-
+  % usuario
+  \node[attribute] (usrpwd) [below left=0.5cm and 1.2 cm of usr] {Senha} edge (usr);
+  \node[attribute] (dti) [below left=1.5cm and 1 cm of usr] {Nome} edge (usr);
+  \node[attribute] (dti) [below right =1.3cm of usr] {E-mail} edge (usr);
+  \node[multi attribute] (dti) [above left=0.9cm of usr] {L\'ingua utilizador} edge (usr);
+  \node[attribute] (tipo) [above =0.9cm of usr] {Tipo} edge (usr);
+  \node[attribute] (tipo) [below left=0.5cm and 3.5 cm of usr] {\key{ID}} edge (usr);
+  \node[attribute] (pais) [above right=1.0cm and 0.2 cm of usr] {Pa\'is} edge (usr);
+  
+  
+  % prog mult
+  \node[attribute] (pmid) [below left=0.5cm and 1 cm of pmu] {\key{ID}} edge (pmu);
+  \node[attribute] (pmdc) [left =0.5cm of pmu] {Descri\c{c}\~ao} edge (pmu);
+  \node[attribute] (pmlp) [above left=1.5cm of pmu] {L\'ingua do projeto} edge (pmu);
+  
+  
+  % upload
+  \node[attribute] (maq) [below left=0.5cm and 1 cm of upl] {M\'aquina} edge (upl);
+  \node[attribute] (maqip) [below left=0.0cm and 4 cm of upl] {IP} edge (maq);
+  \node[attribute] (maqso) [below left=1.0cm and 4 cm of upl] {SO} edge (maq);
+  \node[attribute] (maqnav) [below left=-1.0cm and 3 cm of upl] {Navegador} edge (maq);
+  
+  
+  \node[attribute] (uplloc) [right =0.9cm of upl] {Local} edge (upl);
+  \node[attribute] (upldt) [above right=1.0cm and 2cm of upl] {Data de inser\c{c}\~ao} edge (upl);
+  \node[attribute] (uplltr) [above left=0.5cm of upl] {L\'ingua de transito} edge (upl);
+  
+  % comentario 
+  \node[attribute] (maq) [below left=0.5cm and 1 cm of com] {\key{ID}} edge (com);
+  \node[attribute] (uplloc) [left =0.5cm of com] {Texto} edge (com);
+  \node[attribute] (upldt) [above left=1.5cm of com] {Data} edge (com);
+  
+  % Autor
+  \node[attribute] (anome) [above =0.5cm of aut] {Nome} edge (aut.100);
+  \node[attribute] (apais) [left=0.5cm  of aut] {Pa\'is} edge (aut);
+  \node[attribute] (apais) [below left=0.3cm and 0.5cm  of aut] {\key{ID}} edge (aut);
+  
+  % Retangulo relacao ligado
+  \node[rectangle, draw=gray, fit=(lig) , inner sep=0.0em] {};
+  
 
 
 
